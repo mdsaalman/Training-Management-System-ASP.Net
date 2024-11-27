@@ -1,0 +1,45 @@
+﻿@model IEnumerable<CourseEnroll.Models.Category>
+
+@{
+    ViewData["Title"] = "Category";
+}
+
+<h1>Category</h1>
+
+<p>
+    <a asp-action="AddCategory">Create New</a>
+</p>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th class="text-center"> SL</th>
+            <th> Name</th>
+            <th class="text-center">IsActive</th>
+            <th class="text-center">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            int i = 1;
+        }
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td class="text-center">
+                    @i   @{
+                        i++;
+                    }
+                </td>
+                <td> @item.Name</td>
+                <td class="text-center"> @Html.DisplayFor(modelItem => item.IsActive)</td>
+                <td class="text-center">
+
+                    <div class="btn-group">
+                        @Html.ActionLink("Edit", "UpdateCategory", new { id = item.Id }, new { @class = "btn btn-sm btn-info badge" })
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { onclick = "return confirm('Are you sure to delete this?');", @class = "btn btn-sm btn-danger badge" })
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

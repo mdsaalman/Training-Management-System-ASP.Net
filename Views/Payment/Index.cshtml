@@ -1,0 +1,58 @@
+﻿@model IEnumerable<CourseEnroll.Models.VM.PaymentVM>
+
+@{
+    ViewData["Title"] = "Course Payment";
+}
+
+<h1>Course Payments</h1>
+
+<p>
+    <a asp-action="AddPay">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TotalFee)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Paid)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Due)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model) {
+        decimal Due = item.TotalFee - item.Paid;
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalFee)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Paid)
+            </td>
+            <td>
+                 @Html.DisplayFor(modelItem => Due)
+            </td>
+            <td>            
+                @Html.ActionLink("Details", "DetailsPay", new { id = item.Id })
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

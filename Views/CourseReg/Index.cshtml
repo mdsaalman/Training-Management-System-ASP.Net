@@ -1,0 +1,59 @@
+﻿@model IEnumerable<CourseEnroll.Models.VM.CourseRegVM>
+
+@{
+    ViewData["Title"] = "Course Registration";
+}
+
+<h1>Course Registration</h1>
+
+<p>
+    <a asp-action="AddCourseReg">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RefNo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StudentName)
+            </th>            
+           
+            <th>
+                @Html.DisplayNameFor(model => model.TotalFee)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CourseRegDate)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RefNo)
+                </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StudentName)
+            </td>          
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalFee)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CourseRegDate)
+            </td>
+            <td>
+                    @Html.ActionLink("Edit", "UpdateCourseReg", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new {  id=item.Id  })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

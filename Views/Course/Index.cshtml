@@ -1,0 +1,79 @@
+﻿@model IEnumerable<CourseEnroll.Models.VM.CourseVM>
+
+@{
+    ViewData["Title"] = "Course";
+}
+
+<h1>Course</h1>
+
+<p>
+    <a asp-action="AddCourse">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+               SL
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Category)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CourseDuration)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CourseFee)
+            </th>
+           
+            <th>
+                @Html.DisplayNameFor(model => model.IsActive)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            int i = 1;
+        }
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                    @i   @{
+                        i++;
+                    }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Category)
+                </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CourseDuration)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CourseFee)
+            </td>
+          
+            <td>
+                @Html.DisplayFor(modelItem => item.IsActive)
+            </td>
+            <td>
+                    <div class="btn-group">
+                        @Html.ActionLink("Edit", "UpdateCourse", new { id = item.Id }, new { @class = "btn btn-sm btn-info badge" })
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { onclick = "return confirm('Are you sure to delete this?');", @class = "btn btn-sm btn-danger badge" })
+                    </div>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
